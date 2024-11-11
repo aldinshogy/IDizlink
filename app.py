@@ -23,5 +23,8 @@ if urls:
     # Call the function to extract numbers
     extracted_numbers = extract_numbers_from_urls(urls_list)
     
+    # Join the extracted numbers into a comma-separated string without spaces
+    extracted_numbers_str = ','.join(extracted_numbers)
+    
     # Print the extracted numbers
-    st.write("Extracted Numbers:", extracted_numbers)
+    st.write("Extracted Numbers:", extracted_numbers_str)
