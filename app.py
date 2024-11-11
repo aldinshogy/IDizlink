@@ -1,4 +1,5 @@
 import re
+import streamlit as st
 
 def extract_numbers_from_urls(urls):
     number_pattern = re.compile(r'\d+')
@@ -9,20 +10,18 @@ def extract_numbers_from_urls(urls):
             extracted_numbers.append(number)
     return extracted_numbers
 
+# Streamlit app
+st.title("URL Numbers Extractor")
+
 # Prompt the user to enter URLs
-print("Enter URLs (one per line). Type 'done' when finished:")
-user_input = []
-while True:
-    line = input()
-    if line.lower() == 'done':
-        break
-    user_input.append(line)
+urls = st.text_area("Enter URLs (one per line):")
 
-# List of URLs entered by the user
-urls = user_input
-
-# Call the function to extract numbers
-extracted_numbers = extract_numbers_from_urls(urls)
-
-# Print the extracted numbers
-print("Extracted Numbers:",extracted_numbers)
+# Check if the user has provided any input
+if urls:
+    urls_list = urls.strip().split('\n')
+    
+    # Call the function to extract numbers
+    extracted_numbers = extract_numbers_from_urls(urls_list)
+    
+    # Print the extracted numbers
+    st.write("Extracted Numbers:", extracted_numbers)
